@@ -3,118 +3,15 @@
 
 -- Instances:
 
---[[
-
-
-                    br0k3UI
-                    | Made by br0kE (br3kee on Discord)
-                    https://github.com/br0k3V/br0k3UI-Library/
-                    
-                    
-                    
-                    
-                    
-    br0k3 UI Library
-    Copyright (C) 2024 br0kE
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-    see <https://www.gnu.org/licenses/>.
-
-
-]]
-local br0k3UI = {}
-
-
--- VARIABLES
-local version = "0.90 DEVELOPMENT"
-
-
-
--- FUNCTIONS
-function br0k3UI.CreateWindow(name)
-	script.Parent.Parent.Startup.Visible = true
-	script.Parent.Parent.NewUIWindow.Title.Text = name
-	if script.Parent.Parent.NewKeySystem.Visible then
-		print("There is a key system opened!")
-	end
-end
-
-function br0k3UI.HideWindow()
-	script.Parent.Parent.NewUIWindow.Visible = false
-end
-
-function br0k3UI.CreateNotification(name, message)
-	script.Parent.Parent.NewNotification.Title.Text = name
-	script.Parent.Parent.NewNotification.Notif.Text = message
-	script.Parent.Parent.NewNotification.Visible = true
-	wait(4)
-	script.Parent.Parent.NewNotification.Visible = false
-end
-
-function br0k3UI.DestroyLoader(name)
-	script.Parent.Parent.Startup:Destroy()
-	script.Parent.Parent.NewUIWindow.Title.Text = name
-	wait(2)
-	script.Parent.Parent.NewUIWindow.Visible = true
-	if script.Parent.Parent.NewKeySystem.Visible then
-		print("There is a key system opened!")
-	end
-end
-
-function br0k3UI.CreateKeySystem(key, name)
-	script.Parent.Parent.NewKeySystem.Visible = true
-	script.Parent.Parent.NewKeySystem.Key.Value = key
-	script.Parent.Parent.NewKeySystem.WindowName.Value = name
-end
-
--- // BUTTONS AND STUFF
-
-function br0k3UI.CreateButtonOne(name, callbackResponse)
-	
-	local BtnOne = script.Parent.Parent.NewUIWindow.PageONE.Button1.TextButton
-	if BtnOne.Parent.Visible == false then
-		script.Parent.Parent.NewUIWindow.PageONE.Button1.Title.Text = name
-		BtnOne.Parent.Visible = true
-	end
-	
-	BtnOne.MouseButton1Down:Connect(function()
-		callbackResponse()
-	end)
-end
-
-function br0k3UI.CreateButtonTwo(name, callbackResponse)
-
-	local BtnTwo = script.Parent.Parent.NewUIWindow.PageONE.Button2.TextButton
-	if BtnTwo.Parent.Visible == false then
-		script.Parent.Parent.NewUIWindow.PageONE.Button2.Title.Text = name
-		BtnTwo.Parent.Visible = true
-	end
-	
-	BtnTwo.MouseButton1Down:Connect(function()
-		callbackResponse()
-	end)
-end
-
-
-
-
-return br0k3UI
-
-local NewNotification = Instance.new("Frame")
+local GUI = Instance.new("ScreenGui")
+local Startup = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
-local Notif = Instance.new("TextLabel")
-local Title = Instance.new("TextLabel")
+local TextUI = Instance.new("TextLabel")
+local TextUI_2 = Instance.new("TextLabel")
+local TextUI_3 = Instance.new("TextLabel")
 local NewUIWindow = Instance.new("Frame")
 local UICorner_2 = Instance.new("UICorner")
-local Title_2 = Instance.new("TextLabel")
+local Title = Instance.new("TextLabel")
 local Expand = Instance.new("TextButton")
 local UICorner_3 = Instance.new("UICorner")
 local Pages = Instance.new("ScrollingFrame")
@@ -132,17 +29,18 @@ local Button1 = Instance.new("Frame")
 local UICorner_9 = Instance.new("UICorner")
 local TextButton = Instance.new("TextButton")
 local UICorner_10 = Instance.new("UICorner")
+local Title_2 = Instance.new("TextLabel")
 local Title_3 = Instance.new("TextLabel")
-local Title_4 = Instance.new("TextLabel")
 local Button2 = Instance.new("Frame")
 local UICorner_11 = Instance.new("UICorner")
 local TextButton_2 = Instance.new("TextButton")
 local UICorner_12 = Instance.new("UICorner")
+local Title_4 = Instance.new("TextLabel")
 local Title_5 = Instance.new("TextLabel")
-local Title_6 = Instance.new("TextLabel")
+local br0k3UI = Instance.new("Folder")
 local NewKeySystem = Instance.new("Frame")
 local UICorner_13 = Instance.new("UICorner")
-local Title_7 = Instance.new("TextLabel")
+local Title_6 = Instance.new("TextLabel")
 local Close_2 = Instance.new("TextButton")
 local UICorner_14 = Instance.new("UICorner")
 local Welcome = Instance.new("TextLabel")
@@ -152,55 +50,71 @@ local UICorner_15 = Instance.new("UICorner")
 local Enter = Instance.new("TextLabel")
 local ConfirmKey = Instance.new("TextButton")
 local UICorner_16 = Instance.new("UICorner")
-local Startup = Instance.new("Frame")
+local NewNotification = Instance.new("Frame")
 local UICorner_17 = Instance.new("UICorner")
-local TextUI = Instance.new("TextLabel")
-local TextUI_2 = Instance.new("TextLabel")
-local TextUI_3 = Instance.new("TextLabel")
+local Notif = Instance.new("TextLabel")
+local Title_7 = Instance.new("TextLabel")
 
 --Properties:
 
-NewNotification.Name = "NewNotification"
-NewNotification.Parent = game.StarterGui.ScreenGui
-NewNotification.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
-NewNotification.BorderColor3 = Color3.fromRGB(0, 0, 0)
-NewNotification.BorderSizePixel = 0
-NewNotification.Position = UDim2.new(0.565578997, 0, 0.816679537, 0)
-NewNotification.Size = UDim2.new(0, 654, 0, 124)
-NewNotification.Visible = false
+GUI.Name = "GUI"
+GUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+GUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-UICorner.Parent = NewNotification
+Startup.Name = "Startup"
+Startup.Parent = GUI
+Startup.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+Startup.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Startup.BorderSizePixel = 0
+Startup.Position = UDim2.new(0.420345485, 0, 0.228667453, 0)
+Startup.Size = UDim2.new(0, 249, 0, 321)
+Startup.Visible = false
 
-Notif.Name = "Notif"
-Notif.Parent = NewNotification
-Notif.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Notif.BackgroundTransparency = 1.000
-Notif.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Notif.BorderSizePixel = 0
-Notif.Position = UDim2.new(0.0214067269, 0, 0.319850802, 0)
-Notif.Size = UDim2.new(0, 627, 0, 70)
-Notif.Font = Enum.Font.GothamBold
-Notif.Text = "This is an example notification from br0k3UI"
-Notif.TextColor3 = Color3.fromRGB(255, 255, 255)
-Notif.TextSize = 20.000
-Notif.TextXAlignment = Enum.TextXAlignment.Left
+UICorner.Parent = Startup
 
-Title.Name = "Title"
-Title.Parent = NewNotification
-Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Title.BackgroundTransparency = 1.000
-Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Title.BorderSizePixel = 0
-Title.Position = UDim2.new(0.0214067269, 0, 0.0859798342, 0)
-Title.Size = UDim2.new(0, 504, 0, 22)
-Title.Font = Enum.Font.GothamBold
-Title.Text = "Notification"
-Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-Title.TextSize = 20.000
-Title.TextXAlignment = Enum.TextXAlignment.Left
+TextUI.Name = "TextUI"
+TextUI.Parent = Startup
+TextUI.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextUI.BackgroundTransparency = 1.000
+TextUI.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextUI.BorderSizePixel = 0
+TextUI.Position = UDim2.new(-0.0474191681, 0, 0.728150725, 0)
+TextUI.Size = UDim2.new(0, 271, 0, 28)
+TextUI.Font = Enum.Font.Gotham
+TextUI.Text = "Loading.."
+TextUI.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextUI.TextSize = 14.000
+
+TextUI_2.Name = "TextUI"
+TextUI_2.Parent = Startup
+TextUI_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextUI_2.BackgroundTransparency = 1.000
+TextUI_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextUI_2.BorderSizePixel = 0
+TextUI_2.Position = UDim2.new(-0.0474190451, 0, 0.0427924879, 0)
+TextUI_2.Size = UDim2.new(0, 271, 0, 28)
+TextUI_2.Font = Enum.Font.Gotham
+TextUI_2.Text = "This script uses br0k3UI"
+TextUI_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextUI_2.TextSize = 14.000
+
+TextUI_3.Name = "TextUI"
+TextUI_3.Parent = Startup
+TextUI_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextUI_3.BackgroundTransparency = 1.000
+TextUI_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextUI_3.BorderSizePixel = 0
+TextUI_3.Position = UDim2.new(0.0550513826, 0, 0.16050069, 0)
+TextUI_3.Size = UDim2.new(0, 218, 0, 116)
+TextUI_3.Font = Enum.Font.Gotham
+TextUI_3.Text = "Inspired by Rayfield, br0k3UI provides a modern experience and simple configuration."
+TextUI_3.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextUI_3.TextScaled = true
+TextUI_3.TextSize = 14.000
+TextUI_3.TextWrapped = true
 
 NewUIWindow.Name = "NewUIWindow"
-NewUIWindow.Parent = game.StarterGui.ScreenGui
+NewUIWindow.Parent = GUI
 NewUIWindow.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
 NewUIWindow.BorderColor3 = Color3.fromRGB(0, 0, 0)
 NewUIWindow.BorderSizePixel = 0
@@ -210,18 +124,18 @@ NewUIWindow.Visible = false
 
 UICorner_2.Parent = NewUIWindow
 
-Title_2.Name = "Title"
-Title_2.Parent = NewUIWindow
-Title_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Title_2.BackgroundTransparency = 1.000
-Title_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Title_2.BorderSizePixel = 0
-Title_2.Position = UDim2.new(0, 0, 0.0157480314, 0)
-Title_2.Size = UDim2.new(0, 654, 0, 23)
-Title_2.Font = Enum.Font.Gotham
-Title_2.Text = "Example Window Name "
-Title_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-Title_2.TextSize = 14.000
+Title.Name = "Title"
+Title.Parent = NewUIWindow
+Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Title.BackgroundTransparency = 1.000
+Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Title.BorderSizePixel = 0
+Title.Position = UDim2.new(0, 0, 0.0157480314, 0)
+Title.Size = UDim2.new(0, 654, 0, 23)
+Title.Font = Enum.Font.Gotham
+Title.Text = "Example Window Name "
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.TextSize = 14.000
 
 Expand.Name = "Expand"
 Expand.Parent = NewUIWindow
@@ -360,36 +274,36 @@ TextButton.TextWrapped = true
 
 UICorner_10.Parent = TextButton
 
+Title_2.Name = "Title"
+Title_2.Parent = Button1
+Title_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Title_2.BackgroundTransparency = 1.000
+Title_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Title_2.BorderSizePixel = 0
+Title_2.Position = UDim2.new(0.0117449667, 0, 0.112522252, 0)
+Title_2.Size = UDim2.new(0, 170, 0, 23)
+Title_2.ZIndex = 5
+Title_2.Font = Enum.Font.Gotham
+Title_2.Text = "Button"
+Title_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title_2.TextSize = 14.000
+Title_2.TextXAlignment = Enum.TextXAlignment.Left
+
 Title_3.Name = "Title"
 Title_3.Parent = Button1
 Title_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Title_3.BackgroundTransparency = 1.000
 Title_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Title_3.BorderSizePixel = 0
-Title_3.Position = UDim2.new(0.0117449667, 0, 0.112522252, 0)
-Title_3.Size = UDim2.new(0, 170, 0, 23)
+Title_3.Position = UDim2.new(0.916107357, 0, 0.177038372, 0)
+Title_3.Size = UDim2.new(0, 50, 0, 23)
 Title_3.ZIndex = 5
 Title_3.Font = Enum.Font.Gotham
-Title_3.Text = "Button"
+Title_3.Text = "button"
 Title_3.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title_3.TextSize = 14.000
+Title_3.TextTransparency = 0.500
 Title_3.TextXAlignment = Enum.TextXAlignment.Left
-
-Title_4.Name = "Title"
-Title_4.Parent = Button1
-Title_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Title_4.BackgroundTransparency = 1.000
-Title_4.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Title_4.BorderSizePixel = 0
-Title_4.Position = UDim2.new(0.916107357, 0, 0.177038372, 0)
-Title_4.Size = UDim2.new(0, 50, 0, 23)
-Title_4.ZIndex = 5
-Title_4.Font = Enum.Font.Gotham
-Title_4.Text = "button"
-Title_4.TextColor3 = Color3.fromRGB(255, 255, 255)
-Title_4.TextSize = 14.000
-Title_4.TextTransparency = 0.500
-Title_4.TextXAlignment = Enum.TextXAlignment.Left
 
 Button2.Name = "Button2"
 Button2.Parent = PageONE
@@ -417,39 +331,42 @@ TextButton_2.TextWrapped = true
 
 UICorner_12.Parent = TextButton_2
 
+Title_4.Name = "Title"
+Title_4.Parent = Button2
+Title_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Title_4.BackgroundTransparency = 1.000
+Title_4.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Title_4.BorderSizePixel = 0
+Title_4.Position = UDim2.new(0.0117449667, 0, 0.112522252, 0)
+Title_4.Size = UDim2.new(0, 170, 0, 23)
+Title_4.ZIndex = 5
+Title_4.Font = Enum.Font.Gotham
+Title_4.Text = "Button"
+Title_4.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title_4.TextSize = 14.000
+Title_4.TextXAlignment = Enum.TextXAlignment.Left
+
 Title_5.Name = "Title"
 Title_5.Parent = Button2
 Title_5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Title_5.BackgroundTransparency = 1.000
 Title_5.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Title_5.BorderSizePixel = 0
-Title_5.Position = UDim2.new(0.0117449667, 0, 0.112522252, 0)
-Title_5.Size = UDim2.new(0, 170, 0, 23)
+Title_5.Position = UDim2.new(0.916107357, 0, 0.177038372, 0)
+Title_5.Size = UDim2.new(0, 50, 0, 23)
 Title_5.ZIndex = 5
 Title_5.Font = Enum.Font.Gotham
-Title_5.Text = "Button"
+Title_5.Text = "button"
 Title_5.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title_5.TextSize = 14.000
+Title_5.TextTransparency = 0.500
 Title_5.TextXAlignment = Enum.TextXAlignment.Left
 
-Title_6.Name = "Title"
-Title_6.Parent = Button2
-Title_6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Title_6.BackgroundTransparency = 1.000
-Title_6.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Title_6.BorderSizePixel = 0
-Title_6.Position = UDim2.new(0.916107357, 0, 0.177038372, 0)
-Title_6.Size = UDim2.new(0, 50, 0, 23)
-Title_6.ZIndex = 5
-Title_6.Font = Enum.Font.Gotham
-Title_6.Text = "button"
-Title_6.TextColor3 = Color3.fromRGB(255, 255, 255)
-Title_6.TextSize = 14.000
-Title_6.TextTransparency = 0.500
-Title_6.TextXAlignment = Enum.TextXAlignment.Left
+br0k3UI.Name = "br0k3UI"
+br0k3UI.Parent = GUI
 
 NewKeySystem.Name = "NewKeySystem"
-NewKeySystem.Parent = game.StarterGui.ScreenGui
+NewKeySystem.Parent = GUI
 NewKeySystem.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
 NewKeySystem.BorderColor3 = Color3.fromRGB(0, 0, 0)
 NewKeySystem.BorderSizePixel = 0
@@ -459,18 +376,18 @@ NewKeySystem.Visible = false
 
 UICorner_13.Parent = NewKeySystem
 
-Title_7.Name = "Title"
-Title_7.Parent = NewKeySystem
-Title_7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Title_7.BackgroundTransparency = 1.000
-Title_7.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Title_7.BorderSizePixel = 0
-Title_7.Position = UDim2.new(0, 0, 0.0157480314, 0)
-Title_7.Size = UDim2.new(0, 654, 0, 23)
-Title_7.Font = Enum.Font.Gotham
-Title_7.Text = "Example Key System"
-Title_7.TextColor3 = Color3.fromRGB(255, 255, 255)
-Title_7.TextSize = 14.000
+Title_6.Name = "Title"
+Title_6.Parent = NewKeySystem
+Title_6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Title_6.BackgroundTransparency = 1.000
+Title_6.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Title_6.BorderSizePixel = 0
+Title_6.Position = UDim2.new(0, 0, 0.0157480314, 0)
+Title_6.Size = UDim2.new(0, 654, 0, 23)
+Title_6.Font = Enum.Font.Gotham
+Title_6.Text = "Example Key System"
+Title_6.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title_6.TextSize = 14.000
 
 Close_2.Name = "Close"
 Close_2.Parent = NewKeySystem
@@ -555,64 +472,51 @@ ConfirmKey.TextWrapped = true
 
 UICorner_16.Parent = ConfirmKey
 
-Startup.Name = "Startup"
-Startup.Parent = game.StarterGui.ScreenGui
-Startup.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
-Startup.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Startup.BorderSizePixel = 0
-Startup.Position = UDim2.new(0.420345485, 0, 0.228667453, 0)
-Startup.Size = UDim2.new(0, 249, 0, 321)
-Startup.Visible = false
+NewNotification.Name = "NewNotification"
+NewNotification.Parent = GUI
+NewNotification.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+NewNotification.BorderColor3 = Color3.fromRGB(0, 0, 0)
+NewNotification.BorderSizePixel = 0
+NewNotification.Position = UDim2.new(0.565578997, 0, 0.816679537, 0)
+NewNotification.Size = UDim2.new(0, 654, 0, 124)
+NewNotification.Visible = false
 
-UICorner_17.Parent = Startup
+UICorner_17.Parent = NewNotification
 
-TextUI.Name = "TextUI"
-TextUI.Parent = Startup
-TextUI.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextUI.BackgroundTransparency = 1.000
-TextUI.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextUI.BorderSizePixel = 0
-TextUI.Position = UDim2.new(-0.0474191681, 0, 0.728150725, 0)
-TextUI.Size = UDim2.new(0, 271, 0, 28)
-TextUI.Font = Enum.Font.Gotham
-TextUI.Text = "Loading.."
-TextUI.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextUI.TextSize = 14.000
+Notif.Name = "Notif"
+Notif.Parent = NewNotification
+Notif.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Notif.BackgroundTransparency = 1.000
+Notif.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Notif.BorderSizePixel = 0
+Notif.Position = UDim2.new(0.0214067269, 0, 0.319850802, 0)
+Notif.Size = UDim2.new(0, 627, 0, 70)
+Notif.Font = Enum.Font.GothamBold
+Notif.Text = "This is an example notification from br0k3UI"
+Notif.TextColor3 = Color3.fromRGB(255, 255, 255)
+Notif.TextSize = 20.000
+Notif.TextXAlignment = Enum.TextXAlignment.Left
 
-TextUI_2.Name = "TextUI"
-TextUI_2.Parent = Startup
-TextUI_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextUI_2.BackgroundTransparency = 1.000
-TextUI_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextUI_2.BorderSizePixel = 0
-TextUI_2.Position = UDim2.new(-0.0474190451, 0, 0.0427924879, 0)
-TextUI_2.Size = UDim2.new(0, 271, 0, 28)
-TextUI_2.Font = Enum.Font.Gotham
-TextUI_2.Text = "This script uses br0k3UI"
-TextUI_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextUI_2.TextSize = 14.000
-
-TextUI_3.Name = "TextUI"
-TextUI_3.Parent = Startup
-TextUI_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextUI_3.BackgroundTransparency = 1.000
-TextUI_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextUI_3.BorderSizePixel = 0
-TextUI_3.Position = UDim2.new(0.0550513826, 0, 0.16050069, 0)
-TextUI_3.Size = UDim2.new(0, 218, 0, 116)
-TextUI_3.Font = Enum.Font.Gotham
-TextUI_3.Text = "Inspired by Rayfield, br0k3UI provides a modern experience and simple configuration."
-TextUI_3.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextUI_3.TextScaled = true
-TextUI_3.TextSize = 14.000
-TextUI_3.TextWrapped = true
+Title_7.Name = "Title"
+Title_7.Parent = NewNotification
+Title_7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Title_7.BackgroundTransparency = 1.000
+Title_7.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Title_7.BorderSizePixel = 0
+Title_7.Position = UDim2.new(0.0214067269, 0, 0.0859798342, 0)
+Title_7.Size = UDim2.new(0, 504, 0, 22)
+Title_7.Font = Enum.Font.GothamBold
+Title_7.Text = "Notification"
+Title_7.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title_7.TextSize = 20.000
+Title_7.TextXAlignment = Enum.TextXAlignment.Left
 
 -- Module Scripts:
 
 local fake_module_scripts = {}
 
-do -- nil.br0k3UI
-	local script = Instance.new('ModuleScript', nil)
+do -- br0k3UI.br0k3UI
+	local script = Instance.new('ModuleScript', br0k3UI)
 	script.Name = "br0k3UI"
 	local function module_script()
 		--[[
@@ -726,61 +630,7 @@ end
 
 -- Scripts:
 
-local function FJDRYMH_fake_script() -- PlayerPFP.LocalScript 
-	local script = Instance.new('LocalScript', PlayerPFP)
-	local req = require
-	local require = function(obj)
-		local fake = fake_module_scripts[obj]
-		if fake then
-			return fake()
-		end
-		return req(obj)
-	end
-
-	local Players = game:GetService("Players")
-	
-	local player = Players.LocalPlayer
-	
-	-- Fetch the thumbnail
-	local userId = player.UserId
-	local thumbType = Enum.ThumbnailType.HeadShot
-	local thumbSize = Enum.ThumbnailSize.Size60x60
-	local content, isReady = Players:GetUserThumbnailAsync(userId, thumbType, thumbSize)
-	
-	-- Set the ImageLabel's content to the user thumbnail
-	local imageLabel = script.Parent
-	imageLabel.Image = content
-	imageLabel.Size = UDim2.new(0, 60, 0, 60)
-end
-coroutine.wrap(FJDRYMH_fake_script)()
-local function LPYBSB_fake_script() -- ConfirmKey.CKey 
-	local script = Instance.new('LocalScript', ConfirmKey)
-	local req = require
-	local require = function(obj)
-		local fake = fake_module_scripts[obj]
-		if fake then
-			return fake()
-		end
-		return req(obj)
-	end
-
-	script.Parent.MouseButton1Down:Connect(function()
-		local key = script.Parent.Parent.Key
-		local windowname = script.Parent.Parent.WindowName
-		local txt = script.Parent.Parent.KeyTxt
-		local br0k3UI = require(script.Parent.Parent.Parent.br0k3UI.br0k3UI)
-		local k
-		k = key.Value
-		if txt.Text == k then
-			script.Parent.Parent.Enter.Text = "Correct!"
-			print("correct")
-			script.Parent.Parent.Visible = false
-			br0k3UI.CreateWindow(windowname)
-		end
-	end)
-end
-coroutine.wrap(LPYBSB_fake_script)()
-local function YVSSX_fake_script() -- Startup.LocalScript 
+local function MQADI_fake_script() -- Startup.LocalScript 
 	local script = Instance.new('LocalScript', Startup)
 	local req = require
 	local require = function(obj)
@@ -817,4 +667,73 @@ local function YVSSX_fake_script() -- Startup.LocalScript
 		CheckVis()
 	end
 end
-coroutine.wrap(YVSSX_fake_script)()
+coroutine.wrap(MQADI_fake_script)()
+local function ASSX_fake_script() -- GUI.Script 
+	local script = Instance.new('Script', GUI)
+	local req = require
+	local require = function(obj)
+		local fake = fake_module_scripts[obj]
+		if fake then
+			return fake()
+		end
+		return req(obj)
+	end
+
+	local module = require(script.Parent.br0k3UI.br0k3UI)
+	module.CreateWindow("name")
+end
+coroutine.wrap(ASSX_fake_script)()
+local function NCZJ_fake_script() -- PlayerPFP.LocalScript 
+	local script = Instance.new('LocalScript', PlayerPFP)
+	local req = require
+	local require = function(obj)
+		local fake = fake_module_scripts[obj]
+		if fake then
+			return fake()
+		end
+		return req(obj)
+	end
+
+	local Players = game:GetService("Players")
+	
+	local player = Players.LocalPlayer
+	
+	-- Fetch the thumbnail
+	local userId = player.UserId
+	local thumbType = Enum.ThumbnailType.HeadShot
+	local thumbSize = Enum.ThumbnailSize.Size60x60
+	local content, isReady = Players:GetUserThumbnailAsync(userId, thumbType, thumbSize)
+	
+	-- Set the ImageLabel's content to the user thumbnail
+	local imageLabel = script.Parent
+	imageLabel.Image = content
+	imageLabel.Size = UDim2.new(0, 60, 0, 60)
+end
+coroutine.wrap(NCZJ_fake_script)()
+local function NRRQ_fake_script() -- ConfirmKey.CKey 
+	local script = Instance.new('LocalScript', ConfirmKey)
+	local req = require
+	local require = function(obj)
+		local fake = fake_module_scripts[obj]
+		if fake then
+			return fake()
+		end
+		return req(obj)
+	end
+
+	script.Parent.MouseButton1Down:Connect(function()
+		local key = script.Parent.Parent.Key
+		local windowname = script.Parent.Parent.WindowName
+		local txt = script.Parent.Parent.KeyTxt
+		local br0k3UI = require(script.Parent.Parent.Parent.br0k3UI.br0k3UI)
+		local k
+		k = key.Value
+		if txt.Text == k then
+			script.Parent.Parent.Enter.Text = "Correct!"
+			print("correct")
+			script.Parent.Parent.Visible = false
+			br0k3UI.CreateWindow(windowname)
+		end
+	end)
+end
+coroutine.wrap(NRRQ_fake_script)()
