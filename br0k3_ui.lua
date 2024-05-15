@@ -3,6 +3,111 @@
 
 -- Instances:
 
+--[[
+
+
+                    br0k3UI
+                    | Made by br0kE (br3kee on Discord)
+                    https://github.com/br0k3V/br0k3UI-Library/
+                    
+                    
+                    
+                    
+                    
+    br0k3 UI Library
+    Copyright (C) 2024 br0kE
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    see <https://www.gnu.org/licenses/>.
+
+
+]]
+local br0k3UI = {}
+
+
+-- VARIABLES
+local version = "0.90 DEVELOPMENT"
+
+
+
+-- FUNCTIONS
+function br0k3UI.CreateWindow(name)
+	script.Parent.Parent.Startup.Visible = true
+	script.Parent.Parent.NewUIWindow.Title.Text = name
+	if script.Parent.Parent.NewKeySystem.Visible then
+		print("There is a key system opened!")
+	end
+end
+
+function br0k3UI.HideWindow()
+	script.Parent.Parent.NewUIWindow.Visible = false
+end
+
+function br0k3UI.CreateNotification(name, message)
+	script.Parent.Parent.NewNotification.Title.Text = name
+	script.Parent.Parent.NewNotification.Notif.Text = message
+	script.Parent.Parent.NewNotification.Visible = true
+	wait(4)
+	script.Parent.Parent.NewNotification.Visible = false
+end
+
+function br0k3UI.DestroyLoader(name)
+	script.Parent.Parent.Startup:Destroy()
+	script.Parent.Parent.NewUIWindow.Title.Text = name
+	wait(2)
+	script.Parent.Parent.NewUIWindow.Visible = true
+	if script.Parent.Parent.NewKeySystem.Visible then
+		print("There is a key system opened!")
+	end
+end
+
+function br0k3UI.CreateKeySystem(key, name)
+	script.Parent.Parent.NewKeySystem.Visible = true
+	script.Parent.Parent.NewKeySystem.Key.Value = key
+	script.Parent.Parent.NewKeySystem.WindowName.Value = name
+end
+
+-- // BUTTONS AND STUFF
+
+function br0k3UI.CreateButtonOne(name, callbackResponse)
+	
+	local BtnOne = script.Parent.Parent.NewUIWindow.PageONE.Button1.TextButton
+	if BtnOne.Parent.Visible == false then
+		script.Parent.Parent.NewUIWindow.PageONE.Button1.Title.Text = name
+		BtnOne.Parent.Visible = true
+	end
+	
+	BtnOne.MouseButton1Down:Connect(function()
+		callbackResponse()
+	end)
+end
+
+function br0k3UI.CreateButtonTwo(name, callbackResponse)
+
+	local BtnTwo = script.Parent.Parent.NewUIWindow.PageONE.Button2.TextButton
+	if BtnTwo.Parent.Visible == false then
+		script.Parent.Parent.NewUIWindow.PageONE.Button2.Title.Text = name
+		BtnTwo.Parent.Visible = true
+	end
+	
+	BtnTwo.MouseButton1Down:Connect(function()
+		callbackResponse()
+	end)
+end
+
+
+
+
+return br0k3UI
+
 local NewNotification = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
 local Notif = Instance.new("TextLabel")
