@@ -1,9 +1,4 @@
---local br0k3UI = loadstring(game:HttpGet("https://raw.githubusercontent.com/br0k3V/br0k3UI-Library/main/br0k3_ui.lua", true))()
---local br0k3UI = game:GetService("HttpService"):GetAsync("raw.githubusercontent.com/br0k3V/br0k3UI-Library/main/br0k3_ui.lua")
-
--- If you are making a script (exploit) then remove the -- from line 1.
--- If you are using br0k3UI in Studio then remove the -- from line 2.
--- In Studio, HttpGet is deprecated and is removed
+local br0k3UI = loadstring(game:HttpGet("https://raw.githubusercontent.com/br0k3V/br0k3UI-Library/main/br0k3_ui.lua", true))()
 
 br0k3UI.CreateKeySystem("epic key", "br0k3UI Example") -- creates a new key system (functions in Getting Started)
 -- create buttons after the key system or before the key system
