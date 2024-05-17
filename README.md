@@ -3,6 +3,14 @@ UI library for Roblox.
 
 
 See Wiki on how to use.
-An important update is coming soon. (DEVELOPMENT 0.99)
-Includes:
-Toggles, Loading Screens, New Home Screen, Better UI, and Pages
+
+
+
+
+
+
+
+
+
+# Updates
+An important update is coming soon. br0k3UI Dev 0.99 includes: Toggles, Loading Screens, New Home Screen, Better UI, and Pages
