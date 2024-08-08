@@ -1,8 +1,18 @@
-local br0k3UI = loadstring(game:HttpGet("https://raw.githubusercontent.com/br0k3V/br0k3UI-Library/main/br0k3_ui.lua", true))()
-
-br0k3UI.CreateKeySystem("epic key", "br0k3UI Example") -- creates a new key system (functions in Getting Started)
--- create buttons after the key system or before the key system
-br0k3UI.CreateButton("br0k3UI Button", function()
-	print("br0k3UI button pressed")
+local UI = loadstring(game:HttpGet("https://raw.githubusercontent.com/br0k3V/AdvUI/main/AdvUILoader.lua"))()
+module:Initialize()
+module:CreateNewNotification("Testing notification?")
+local int = module:CreateNewInterface("AdvUI Example") -- make a new interface (required) with the window name
+module:CreateNewTab(int, "Testing") -- make a tab
+module:CreateNewTab(int, "More Testing")
+module:CreateNewSlider(int, "Testing slider", "Testing", function() -- name, tab and function
+	print("slider")
+	--the function will run every time the user drags the slider
 end)
-br0k3UI.CreateNotification("br0k3UI", "epic")
+module:CreateNewButton(int, "Testing button", "Testing", function()-- name, tab and function
+	print("hi")
+	-- the function will run every time the user presses the button
+end)
+module:CreateNewButton(int, "More Testing button", "More Testing", function()-- name, tab and function
+	print("hi")
+	-- the function will run every time the user presses the button
+end)
